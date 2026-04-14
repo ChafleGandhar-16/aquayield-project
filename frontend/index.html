@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AquaYield - AI-powered agricultural irrigation prediction system for smart farming decisions.">
+    <title>AquaYield | Smart Irrigation Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header id="app-header">
+        <div class="header-inner">
+            <div class="logo-group">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4C20 4 8 18 8 26C8 32.627 13.373 36 20 36C26.627 36 32 32.627 32 26C32 18 20 4 20 4Z" fill="url(#dropGrad)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                        <path d="M18 28C18 28 14 22 14 18C14 14 18 12 18 12" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="dropGrad" x1="20" y1="4" x2="20" y2="36" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00E5FF"/>
+                                <stop offset="1" stop-color="#00C853"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div>
+                    <h1>AquaYield <span class="badge">Prototype</span></h1>
+                    <p class="tagline">AI-Powered Irrigation Intelligence</p>
+                </div>
+            </div>
+            <div class="header-status">
+                <span class="status-dot"></span>
+                <span>System Online</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+    <main id="dashboard">
+
+        <!-- Input Section -->
+        <section class="card input-card" id="input-section">
+            <div class="card-header">
+                <h2>🌿 Environmental Parameters</h2>
+                <p class="card-subtitle">Enter current field conditions for AI analysis</p>
+            </div>
+            <form id="prediction-form">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="temperature">
+                            <span class="input-icon">🌡️</span>
+                            Temperature (°C)
+                        </label>
+                        <input type="number" id="temperature" name="temperature" 
+                               min="0" max="60" step="0.1" placeholder="e.g. 32" required>
+                        <div class="input-range-label">Range: 0 – 60°C</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="humidity">
+                            <span class="input-icon">💧</span>
+                            Humidity (%)
+                        </label>
+                        <input type="number" id="humidity" name="humidity" 
+                               min="0" max="100" step="0.1" placeholder="e.g. 55" required>
+                        <div class="input-range-label">Range: 0 – 100%</div>
+                    </div>
+                    <div class="input-group">
+                        <label for="soil_moisture">
+                            <span class="input-icon">🌱</span>
+                            Soil Moisture (%)
+                        </label>
+                        <input type="number" id="soil_moisture" name="soil_moisture" 
+                               min="0" max="100" step="0.1" placeholder="e.g. 30" required>
+                        <div class="input-range-label">Range: 0 – 100%</div>
+                    </div>
+                </div>
+                <button type="submit" id="predict-btn" class="btn-primary">
+                    <span class="btn-text">Run AI Prediction</span>
+                    <span class="btn-loader" hidden>
+                        <span class="spinner"></span> Analyzing...
+                    </span>
+                </button>
+            </form>
+        </section>
+
+        <!-- Results Section (hidden by default) -->
+        <section class="card result-card" id="result-section" hidden>
+            <div class="card-header">
+                <h2>📊 AI Prediction Result</h2>
+                <p class="card-subtitle">Recommended irrigation based on your inputs</p>
+            </div>
+            <div class="result-body">
+                <div class="result-big-number">
+                    <span id="result-liters">—</span>
+                    <span class="result-unit">Liters / Hectare</span>
+                </div>
+                <div class="result-details" id="result-details">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Error Section (hidden by default) -->
+        <section class="card error-card" id="error-section" hidden>
+            <div class="error-body">
+                <span class="error-icon">⚠️</span>
+                <p id="error-message">Something went wrong.</p>
+            </div>
+        </section>
+
+        <!-- Prediction History Section -->
+        <section class="card history-card" id="history-section">
+            <div class="card-header">
+                <h2>📜 Recent Predictions</h2>
+                <p class="card-subtitle">Latest 3 predictions from Firestore</p>
+            </div>
+            <ul id="history-list" class="history-list">
+                <li class="history-empty">No predictions recorded yet.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer id="app-footer">
+        <p>&copy; 2026 AquaYield &mdash; Smart Agriculture AI System</p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
